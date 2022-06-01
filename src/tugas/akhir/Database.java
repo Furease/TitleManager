@@ -6,9 +6,8 @@ package tugas.akhir;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.sql.*;
-import java.util.Arrays;
+
 
 /**
  *
@@ -129,6 +128,29 @@ public class Database implements Serializable {
             }
         }
     }
+
+    // get array list of judul from searh keyword
+    public ArrayList<String> getJudul(String keyword) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "SELECT judul FROM project WHERE judul LIKE ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, "%" + keyword + "%");
+            ResultSet rs = pstmt.executeQuery();
+            ArrayList<String> judul = new ArrayList<>();
+            while (rs.next()) {
+                judul.add(rs.getString("judul"));
+            }
+            return judul;
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
     
 
     // public List<Mahasiswa> getListMahasiswa() throws SQLException {

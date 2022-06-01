@@ -4,6 +4,12 @@
  */
 package tugas.akhir;
 
+import java.sql.SQLException;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Fure
@@ -28,7 +34,7 @@ public class SearchPanel extends javax.swing.JPanel {
 
         searchTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
@@ -37,13 +43,18 @@ public class SearchPanel extends javax.swing.JPanel {
                 searchTextFieldActionPerformed(evt);
             }
         });
+        searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                searchTextFieldKeyTyped(evt);
+            }
+        });
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+        jList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jList);
 
         jLabel1.setText("Judul");
 
@@ -85,11 +96,32 @@ public class SearchPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_searchTextFieldActionPerformed
 
+    private void searchTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyTyped
+        // TODO add your handling code here:
+        loadListData();
 
+    }//GEN-LAST:event_searchTextFieldKeyTyped
+    
+    private void loadListData() {
+        DefaultListModel<String> model = new DefaultListModel<String>();
+        jList.setModel(model);
+
+        try {
+            String search = searchTextField.getText();
+            for (String tittle : Database.getInstance().getJudul(search)) {
+                model.addElement(tittle);
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex);
+            JOptionPane.showMessageDialog(this, "Gagal mengambil data", "Gagal", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField searchTextField;
     // End of variables declaration//GEN-END:variables
