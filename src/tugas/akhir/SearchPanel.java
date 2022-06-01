@@ -21,6 +21,7 @@ public class SearchPanel extends javax.swing.JPanel {
      */
     public SearchPanel() {
         initComponents();
+        loadListData();
     }
 
     /**
@@ -38,12 +39,10 @@ public class SearchPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        searchTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchTextFieldActionPerformed(evt);
-            }
-        });
         searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                searchTextFieldKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 searchTextFieldKeyTyped(evt);
             }
@@ -92,30 +91,34 @@ public class SearchPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchTextFieldActionPerformed
-
     private void searchTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyTyped
         // TODO add your handling code here:
-        loadListData();
-
+        // load list
+        
     }//GEN-LAST:event_searchTextFieldKeyTyped
+
+    private void searchTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyReleased
+        // TODO add your handling code here:
+        loadListData();
+    }//GEN-LAST:event_searchTextFieldKeyReleased
     
+
     private void loadListData() {
         DefaultListModel<String> model = new DefaultListModel<String>();
-        jList.setModel(model);
-
+        
         try {
             String search = searchTextField.getText();
             for (String tittle : Database.getInstance().getJudul(search)) {
-                model.addElement(tittle);
+                // add html tags
+                model.addElement("<html><font color='black'>" + tittle + "</font></html>");
+                // model.addElement(tittle);
             }
         } catch (SQLException ex) {
             System.err.println(ex);
             JOptionPane.showMessageDialog(this, "Gagal mengambil data", "Gagal", JOptionPane.ERROR_MESSAGE);
         }
         
+        jList.setModel(model);
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

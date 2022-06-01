@@ -72,14 +72,14 @@ public class Database implements Serializable {
             pstmt.setString(4, userProfiles.getNomor());
             pstmt.executeUpdate();
 
-            sql = "INSERT INTO project VALUES(?, ?, ?)";
-            pstmt = conn.prepareStatement(sql);
-            for (int i = 0; i < userProfiles.getJudul().size(); i++) {
-                pstmt.setString(1, userProfiles.getJudul().get(i));
-                pstmt.setString(2, userProfiles.getAbstrak().get(i));
-                pstmt.setString(3, userProfiles.getNim());
-                pstmt.executeUpdate();
-            }
+            // sql = "INSERT INTO project VALUES(?, ?, ?)";
+            // pstmt = conn.prepareStatement(sql);
+            // for (int i = 0; i < userProfiles.getJudul().size(); i++) {
+            //     pstmt.setString(1, userProfiles.getJudul().get(i));
+            //     pstmt.setString(2, userProfiles.getAbstrak().get(i));
+            //     pstmt.setString(3, userProfiles.getNim());
+            //     pstmt.executeUpdate();
+            // }
 
         } catch (SQLException ex) {
             throw ex;
@@ -133,14 +133,32 @@ public class Database implements Serializable {
     public ArrayList<String> getJudul(String keyword) throws SQLException {
         Connection conn = getConnection();
         try {
-            String sql = "SELECT judul FROM project WHERE judul LIKE ?";
+            // separate keword into array
+            String[] keywords = keyword.split(" ");
+            String sql = "SELECT * FROM project WHERE ";
+            for (int i = 0; i < keywords.length; i++) {
+                if (i == 0) {
+                    sql += "judul LIKE '%" + keywords[i] + "%'";
+                } else {
+                    sql += " OR judul LIKE '%" + keywords[i] + "%'";
+                }
+            }
+
             PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, "%" + keyword + "%");
             ResultSet rs = pstmt.executeQuery();
             ArrayList<String> judul = new ArrayList<>();
+
+            // bold keyword case insensitive
             while (rs.next()) {
-                judul.add(rs.getString("judul"));
+                String judulTemp = rs.getString("judul");
+                for (int i = 0; i < keywords.length; i++) {
+                    judulTemp = judulTemp.replaceAll("(?i)" + keywords[i], "<b>" + keywords[i] + "</b>");
+                }
+                judul.add(judulTemp);
             }
+            // while (rs.next()) {
+            //     judul.add(rs.getString("judul"));
+            // }
             return judul;
         } catch (SQLException ex) {
             throw ex;
@@ -150,8 +168,6 @@ public class Database implements Serializable {
             }
         }
     }
-
-    
 
     // public List<Mahasiswa> getListMahasiswa() throws SQLException {
     //     List<Mahasiswa> mhsList = new ArrayList<>();
