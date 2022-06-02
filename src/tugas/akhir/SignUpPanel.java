@@ -45,7 +45,7 @@ public class SignUpPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        saveButton = new javax.swing.JButton();
+        nextButton = new javax.swing.JButton();
 
         jLabel1.setText("NIM");
 
@@ -55,10 +55,10 @@ public class SignUpPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Nomor");
 
-        saveButton.setText("Save");
-        saveButton.addActionListener(new java.awt.event.ActionListener() {
+        nextButton.setText("next");
+        nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveButtonActionPerformed(evt);
+                nextButtonActionPerformed(evt);
             }
         });
 
@@ -84,7 +84,7 @@ public class SignUpPanel extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(100, 100, 100)
-                            .addComponent(saveButton))
+                            .addComponent(nextButton))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(nomorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -110,33 +110,40 @@ public class SignUpPanel extends javax.swing.JPanel {
                     .addComponent(nomorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(saveButton)
+                .addComponent(nextButton)
                 .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
         // TODO add your handling code here:
         UserProfiles user = new UserProfiles();
         user.setNim(nimTextField.getText());
         user.setNama(namaTextField.getText());
         user.setEmail(emailTextField.getText());
         user.setNomor(nomorTextField.getText());
+        // check if textField is already filled
+        if (nimTextField.getText().isEmpty() || namaTextField.getText().isEmpty() || emailTextField.getText().isEmpty()
+                || nomorTextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill all the textFields");
+        } else {
 
-        // konfirimasi
-        int result = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin menyimpan data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-        if (result == JOptionPane.YES_OPTION) {
-            // simpan data
-            try {
-                Database.getInstance().insertProfile(user);
-                contentScrollPane.setViewportView(new SearchPanel());
-            } catch (SQLException ex) {
-                System.err.println(ex);
-                JOptionPane.showMessageDialog(this, "Gagal menyimpan data", "Gagal", JOptionPane.ERROR_MESSAGE);
+            // konfirimasi
+            int result = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin menyimpan data ini?",
+                    "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
+                // simpan data
+                try {
+                    Database.getInstance().insertProfile(user);
+                    contentScrollPane.setViewportView(new SignUpPassPanel(contentScrollPane, user.getNim()));
+                } catch (SQLException ex) {
+                    System.err.println(ex);
+                    JOptionPane.showMessageDialog(this, "Gagal menyimpan data", "Gagal", JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
         clearForm();
-    }//GEN-LAST:event_saveButtonActionPerformed
+    }//GEN-LAST:event_nextButtonActionPerformed
 
     // clearForm
     private void clearForm() {
@@ -153,8 +160,8 @@ public class SignUpPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField namaTextField;
+    private javax.swing.JButton nextButton;
     private javax.swing.JTextField nimTextField;
     private javax.swing.JTextField nomorTextField;
-    private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

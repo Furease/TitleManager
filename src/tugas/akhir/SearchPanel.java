@@ -22,6 +22,7 @@ public class SearchPanel extends javax.swing.JPanel {
     public SearchPanel() {
         initComponents();
         loadListData();
+        loginAsLabel();
     }
 
     /**
@@ -120,6 +121,18 @@ public class SearchPanel extends javax.swing.JPanel {
         
         jList.setModel(model);
         
+    }
+
+    private void loginAsLabel() {
+        // TODO add your handling code here:
+        try {
+            jLabel1.setText("Login as: "
+                    + Database.getInstance().getUserProfiles(Account.getInstance().getUsername()).getNama());
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+
+    
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
