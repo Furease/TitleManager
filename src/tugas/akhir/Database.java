@@ -140,7 +140,7 @@ public class Database implements Serializable {
                 if (i == 0) {
                     sql += "judul LIKE '%" + keywords[i] + "%'";
                 } else {
-                    sql += " OR judul LIKE '%" + keywords[i] + "%'";
+                    sql += " AND judul LIKE '%" + keywords[i] + "%'";
                 }
             }
 
@@ -148,17 +148,35 @@ public class Database implements Serializable {
             ResultSet rs = pstmt.executeQuery();
             ArrayList<String> judul = new ArrayList<>();
 
-            // bold keyword case insensitive
+            // bold keyword in judul and add to array list of judul (bold keyword)
+            // while (rs.next()) {
+            //     String judulTemp = rs.getString("judul");
+            //     for (int i = 0; i < keywords.length; i++) {
+            //         judulTemp = judulTemp.replace(keywords[i], "<b>" + keywords[i] + "</b>");
+            //     }
+
+
+
             while (rs.next()) {
                 String judulTemp = rs.getString("judul");
-                for (int i = 0; i < keywords.length; i++) {
-                    judulTemp = judulTemp.replaceAll("(?i)" + keywords[i], "<b>" + keywords[i] + "</b>");
+                // bold keyword per kata case insensitive split by space
+                String[] judulTempSplit = judulTemp.split(" ");
+                String judulTempBold = "";
+                for (int i = 0; i < judulTempSplit.length; i++) {
+                    for (int j = 0; j < keywords.length; j++) {
+                        if (judulTempSplit[i].toLowerCase().contains(keywords[j].toLowerCase()) && !keywords[j].equals("")) {
+                            judulTempBold += judulTempSplit[i] + " ";
+                        }
+                    }
+                }
+
+                String[] selectedKeyword = judulTempBold.split(" ");
+                // bold keyword per kata case insensitive
+                for (int i = 0; i < selectedKeyword.length; i++) {
+                    judulTemp = judulTemp.replace(selectedKeyword[i], "<b>" + selectedKeyword[i] + "</b>");
                 }
                 judul.add(judulTemp);
             }
-            // while (rs.next()) {
-            //     judul.add(rs.getString("judul"));
-            // }
             return judul;
         } catch (SQLException ex) {
             throw ex;
@@ -270,7 +288,7 @@ public class Database implements Serializable {
     public void setUser (String username, String password) throws SQLException {
         Connection conn = getConnection();
         try {
-            String sql = "INSERT INTO accounts VALUES(?, ?)";
+            String sql = "INSERT INTO accounts (username, password) VALUES (?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
