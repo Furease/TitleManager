@@ -130,10 +130,10 @@ public class Database implements Serializable {
     }
 
     // get array list of judul from searh keyword
-    public ArrayList<String> getJudul(String keyword) throws SQLException {
+    public ArrayList<Item> getJudulByKeyword(String keyword) throws SQLException {
         Connection conn = getConnection();
         try {
-            // separate keword into array
+            // pisahkan keyword menjadi array
             String[] keywords = keyword.split(" ");
             String sql = "SELECT * FROM project WHERE ";
             for (int i = 0; i < keywords.length; i++) {
@@ -146,38 +146,58 @@ public class Database implements Serializable {
 
             PreparedStatement pstmt = conn.prepareStatement(sql);
             ResultSet rs = pstmt.executeQuery();
-            ArrayList<String> judul = new ArrayList<>();
-
-            // bold keyword in judul and add to array list of judul (bold keyword)
-            // while (rs.next()) {
-            //     String judulTemp = rs.getString("judul");
-            //     for (int i = 0; i < keywords.length; i++) {
-            //         judulTemp = judulTemp.replace(keywords[i], "<b>" + keywords[i] + "</b>");
-            //     }
-
-
+            ArrayList<Item> items = new ArrayList<>();
 
             while (rs.next()) {
-                String judulTemp = rs.getString("judul");
-                // bold keyword per kata case insensitive split by space
-                String[] judulTempSplit = judulTemp.split(" ");
-                String judulTempBold = "";
+                Item item = new Item();
+                int id = rs.getInt("id");
+                String judul = rs.getString("judul");
+                String[] judulTempSplit = judul.split(" ");
+                String judulBold = "";
+
+
+                // pilih keyword yang sama dengan judul
                 for (int i = 0; i < judulTempSplit.length; i++) {
                     for (int j = 0; j < keywords.length; j++) {
                         if (judulTempSplit[i].toLowerCase().contains(keywords[j].toLowerCase()) && !keywords[j].equals("")) {
-                            judulTempBold += judulTempSplit[i] + " ";
+                            judulBold += judulTempSplit[i] + " ";
                         }
                     }
                 }
-
-                String[] selectedKeyword = judulTempBold.split(" ");
+                
+                String[] selectedKeyword = judulBold.split(" ");
                 // bold keyword per kata case insensitive
                 for (int i = 0; i < selectedKeyword.length; i++) {
-                    if (!selectedKeyword[i].equals("")) judulTemp = judulTemp.replace(selectedKeyword[i], "<b>" + selectedKeyword[i] + "</b>");
+                    if (!selectedKeyword[i].equals("")) judul = judul.replace(selectedKeyword[i], "<b>" + selectedKeyword[i] + "</b>");
                 }
-                judul.add(judulTemp);
+                item.setValue(id);
+                // menambahkan tag html
+                item.setDescription("<html>" + judul + "</></html>");
+                items.add(item);
             }
-            return judul;
+            return items;
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    // get judul by id
+    public String getJudulById(int id) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "SELECT judul FROM project WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return rs.getString("judul");
+            } else {
+                return null;
+            }
         } catch (SQLException ex) {
             throw ex;
         } finally {
