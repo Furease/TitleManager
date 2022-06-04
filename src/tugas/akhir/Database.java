@@ -173,7 +173,7 @@ public class Database implements Serializable {
                 String[] selectedKeyword = judulTempBold.split(" ");
                 // bold keyword per kata case insensitive
                 for (int i = 0; i < selectedKeyword.length; i++) {
-                    judulTemp = judulTemp.replace(selectedKeyword[i], "<b>" + selectedKeyword[i] + "</b>");
+                    if (!selectedKeyword[i].equals("")) judulTemp = judulTemp.replace(selectedKeyword[i], "<b>" + selectedKeyword[i] + "</b>");
                 }
                 judul.add(judulTemp);
             }
