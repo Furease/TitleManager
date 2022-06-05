@@ -47,6 +47,30 @@ public class SignUpPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
 
+        nimTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nimTextFieldActionPerformed(evt);
+            }
+        });
+
+        namaTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                namaTextFieldActionPerformed(evt);
+            }
+        });
+
+        emailTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailTextFieldActionPerformed(evt);
+            }
+        });
+
+        nomorTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomorTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel1.setText("NIM");
 
         jLabel2.setText("Nama");
@@ -143,7 +167,32 @@ public class SignUpPanel extends javax.swing.JPanel {
             }
         }
         clearForm();
+        nimTextField.requestFocus();
     }//GEN-LAST:event_nextButtonActionPerformed
+
+    private void nimTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nimTextFieldActionPerformed
+        // TODO add your handling code here:
+        // if enter is pressed, go to next textField
+        namaTextField.requestFocus();
+    }//GEN-LAST:event_nimTextFieldActionPerformed
+
+    private void namaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaTextFieldActionPerformed
+        // TODO add your handling code here:
+        // if enter is pressed, go to next textField
+        emailTextField.requestFocus();
+    }//GEN-LAST:event_namaTextFieldActionPerformed
+
+    private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
+        // TODO add your handling code here:
+        // if enter is pressed, go to next textField
+        nomorTextField.requestFocus();
+    }//GEN-LAST:event_emailTextFieldActionPerformed
+
+    private void nomorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomorTextFieldActionPerformed
+        // TODO add your handling code here:
+        // if enter is pressed, go to next textField
+        nextButton.doClick();
+    }//GEN-LAST:event_nomorTextFieldActionPerformed
 
     // clearForm
     private void clearForm() {

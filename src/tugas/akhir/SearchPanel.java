@@ -36,11 +36,104 @@ public class SearchPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        projectDialog = new javax.swing.JDialog();
+        namaLabel = new javax.swing.JLabel();
+        nimLabel = new javax.swing.JLabel();
+        nomorLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        judulLabel = new javax.swing.JLabel();
+        abstrakLabel = new javax.swing.JLabel();
+        judulTextField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        abstrakTextArea = new javax.swing.JTextArea();
+        namaTextField = new javax.swing.JTextField();
+        nimTextField = new javax.swing.JTextField();
+        nomorTextField = new javax.swing.JTextField();
+        emailTextField = new javax.swing.JTextField();
         searchTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+
+        namaLabel.setText("Nama");
+
+        nimLabel.setText("NIM");
+
+        nomorLabel.setText("Nomor Telp");
+
+        emailLabel.setText("Email");
+
+        judulLabel.setText("Judul");
+
+        abstrakLabel.setText("Abstrak");
+
+        abstrakTextArea.setColumns(20);
+        abstrakTextArea.setRows(5);
+        jScrollPane2.setViewportView(abstrakTextArea);
+
+        javax.swing.GroupLayout projectDialogLayout = new javax.swing.GroupLayout(projectDialog.getContentPane());
+        projectDialog.getContentPane().setLayout(projectDialogLayout);
+        projectDialogLayout.setHorizontalGroup(
+            projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(projectDialogLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(projectDialogLayout.createSequentialGroup()
+                        .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(abstrakLabel)
+                            .addComponent(judulLabel)
+                            .addComponent(namaLabel))
+                        .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(projectDialogLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(judulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(projectDialogLayout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(namaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(projectDialogLayout.createSequentialGroup()
+                        .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomorLabel)
+                            .addComponent(emailLabel)
+                            .addComponent(nimLabel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nimTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        projectDialogLayout.setVerticalGroup(
+            projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, projectDialogLayout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(judulLabel)
+                    .addComponent(judulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
+                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(abstrakLabel)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(namaLabel)
+                    .addComponent(namaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nimLabel)
+                    .addComponent(nimTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(emailLabel)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(projectDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomorLabel)
+                    .addComponent(nomorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
+        );
 
         searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -127,11 +220,49 @@ public class SearchPanel extends javax.swing.JPanel {
         Item item = itemList.get(index);
 
         try {
-            String judul = Database.getInstance().getJudulById(item.getValue());
-            System.out.println(judul);
+            Project project = Database.getInstance().getProject(item.getValue());
+            // set data to dialog
+            UserProfiles user = Database.getInstance().getUserProfiles(project.getNim());
+            judulTextField.setText(project.getJudul());
+            abstrakTextArea.setText(project.getAbstrak());
+            namaTextField.setText(user.getNama());
+            nimTextField.setText(user.getNim());
+            emailTextField.setText(user.getEmail());
+            nomorTextField.setText(user.getNomor());
+
+            // dialog size
+            projectDialog.setSize(400, 300);
+
+            // show dialog
+            projectDialog.setVisible(true);
+
+            // show dialog in center of screen
+            projectDialog.setLocationRelativeTo(null);
+
+            // Jika user bukan pemilik project maka tidak bisa edit
+            if (!user.getNim().equals(Account.getInstance().getUsername())) {
+                // disable edit all text field
+                judulTextField.setEditable(false);
+                abstrakTextArea.setEditable(false);
+                namaTextField.setEditable(false);
+                nimTextField.setEditable(false);
+                emailTextField.setEditable(false);
+                nomorTextField.setEditable(false);
+            } else {
+                // enable edit all text field
+                judulTextField.setEditable(true);
+                abstrakTextArea.setEditable(true);
+                namaTextField.setEditable(true);
+                nimTextField.setEditable(true);
+                emailTextField.setEditable(true);
+                nomorTextField.setEditable(true);
+            }
+
+
+
         } catch (SQLException ex) {
-            System.err.println(ex);
-            JOptionPane.showMessageDialog(this, "Gagal mengambil data", "Gagal", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            // JOptionPane.showMessageDialog(this, "Gagal mengambil data", "Gagal", JOptionPane.ERROR_MESSAGE);
         }
         
         // System.out.println(item.getDescription());
@@ -185,10 +316,24 @@ public class SearchPanel extends javax.swing.JPanel {
     
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel abstrakLabel;
+    private javax.swing.JTextArea abstrakTextArea;
+    private javax.swing.JLabel emailLabel;
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel judulLabel;
+    private javax.swing.JTextField judulTextField;
+    private javax.swing.JLabel namaLabel;
+    private javax.swing.JTextField namaTextField;
+    private javax.swing.JLabel nimLabel;
+    private javax.swing.JTextField nimTextField;
+    private javax.swing.JLabel nomorLabel;
+    private javax.swing.JTextField nomorTextField;
+    private javax.swing.JDialog projectDialog;
     private javax.swing.JTextField searchTextField;
     // End of variables declaration//GEN-END:variables
 }

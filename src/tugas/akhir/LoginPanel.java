@@ -50,6 +50,18 @@ public class LoginPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_password_32px.png"))); // NOI18N
         jLabel2.setText("Password");
 
+        userTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userTextFieldActionPerformed(evt);
+            }
+        });
+
+        PasswordField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PasswordFieldActionPerformed(evt);
+            }
+        });
+
         loginButton.setText("Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +130,8 @@ public class LoginPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Username atau Password salah", "Gagal", JOptionPane.ERROR_MESSAGE);
             userTextField.setText("");
             PasswordField.setText("");
+            // focus ke username
+            userTextField.requestFocus();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
@@ -125,6 +139,18 @@ public class LoginPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         contentScrollPane.setViewportView(new SignUpPanel(contentScrollPane));
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void userTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextFieldActionPerformed
+        // TODO add your handling code here:
+        // if press enter key, switch to password field
+        PasswordField.requestFocus();
+    }//GEN-LAST:event_userTextFieldActionPerformed
+
+    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
+        // TODO add your handling code here:
+        // if press enter key, press login button
+        loginButton.doClick();
+    }//GEN-LAST:event_PasswordFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

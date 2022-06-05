@@ -104,19 +104,63 @@ public class Database implements Serializable {
                 userProfiles.setEmail(rs.getString("email"));
                 userProfiles.setNomor(rs.getString("nomor"));
 
-                sql = "SELECT * FROM project WHERE nim = ?";
-                pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, nim);
-                rs = pstmt.executeQuery();
-                ArrayList<String> judul = new ArrayList<>();
-                ArrayList<String> abstrak = new ArrayList<>();
-                while (rs.next()) {
-                    judul.add(rs.getString("judul"));
-                    abstrak.add(rs.getString("abstrak"));
-                }
-                userProfiles.setJudul(judul);
-                userProfiles.setAbstrak(abstrak);
+                // sql = "SELECT * FROM project WHERE nim = ?";
+                // pstmt = conn.prepareStatement(sql);
+                // pstmt.setString(1, nim);
+                // rs = pstmt.executeQuery();
+                // ArrayList<String> judul = new ArrayList<>();
+                // ArrayList<String> abstrak = new ArrayList<>();
+                // while (rs.next()) {
+                //     judul.add(rs.getString("judul"));
+                //     abstrak.add(rs.getString("abstrak"));
+                // }
+                // userProfiles.setJudul(judul);
+                // userProfiles.setAbstrak(abstrak);
                 return userProfiles;
+            } else {
+                return null;
+            }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    // delete user profile
+    public void deleteUserProfile(String nim) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "DELETE FROM user_profiles WHERE nim = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, nim);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    //get Project by id
+    public Project getProject(int id) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "SELECT * FROM project WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                Project project = new Project();
+                project.setId(rs.getInt("id"));
+                project.setJudul(rs.getString("judul"));
+                project.setAbstrak(rs.getString("abstrak"));
+                project.setNim(rs.getString("nim"));
+                return project;
             } else {
                 return null;
             }

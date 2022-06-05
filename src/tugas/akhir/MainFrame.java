@@ -18,6 +18,8 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
+        // show the window in the center of the screen
+        setLocationRelativeTo(null);
         initComponents();
         contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
     }

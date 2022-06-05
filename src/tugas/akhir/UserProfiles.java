@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class UserProfiles implements Serializable {
     private String nim, nama, email, nomor;
-    private ArrayList<String> judul, abstrak;
+    // private ArrayList<String> judul, abstrak;
 
     public String getNim() {
         return nim;
@@ -47,19 +47,19 @@ public class UserProfiles implements Serializable {
         this.nomor = nomor;
     }
 
-    public ArrayList<String> getJudul() {
-        return judul;
-    }
+    // public ArrayList<String> getJudul() {
+    //     return judul;
+    // }
 
-    public void setJudul(ArrayList<String> judul) {
-        this.judul = judul;
-    }
+    // public void setJudul(ArrayList<String> judul) {
+    //     this.judul = judul;
+    // }
 
-    public ArrayList<String> getAbstrak() {
-        return abstrak;
-    }
+    // public ArrayList<String> getAbstrak() {
+    //     return abstrak;
+    // }
 
-    public void setAbstrak(ArrayList<String> abstrak) {
-        this.abstrak = abstrak;
-    }
+    // public void setAbstrak(ArrayList<String> abstrak) {
+    //     this.abstrak = abstrak;
+    // }
 }
