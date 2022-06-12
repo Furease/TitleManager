@@ -197,6 +197,23 @@ public class Database implements Serializable {
         }
     }
 
+    // delete project
+    public void deleteProject(int id) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "DELETE FROM project WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
     // get array list of judul from searh keyword
     public ArrayList<Item> getJudulByKeyword(String keyword) throws SQLException {
         Connection conn = getConnection();

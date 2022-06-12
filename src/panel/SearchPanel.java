@@ -268,7 +268,7 @@ public class SearchPanel extends javax.swing.JPanel {
             projectDialog.setLocationRelativeTo(null);
 
             // Jika user bukan pemilik project maka tidak bisa edit
-            if (!user.getNim().equals(Account.getInstance().getUsername())) {
+            if (!user.getNim().equals(Account.getInstance().getUsername()) && !Account.getInstance().getUsername().equals("admin")) {
                 // disable edit all text field
                 judulTextField.setEditable(false);
                 abstrakTextArea.setEditable(false);
@@ -302,6 +302,7 @@ public class SearchPanel extends javax.swing.JPanel {
 
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_insertButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
@@ -342,6 +343,26 @@ public class SearchPanel extends javax.swing.JPanel {
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
         // TODO add your handling code here:
+
+        // konfirm delete dialog
+        int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin menghapus data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+
+        if (confirm == JOptionPane.YES_OPTION) {
+
+            // delete data
+            int id = Integer.parseInt(idTextField.getText());
+            try {
+                Database.getInstance().deleteProject(id);
+                JOptionPane.showMessageDialog(this, "Berhasil menghapus data", "Berhasil",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            // batal delete
+            JOptionPane.showMessageDialog(this, "Batal menghapus data", "Batal", JOptionPane.INFORMATION_MESSAGE);
+        }
+
     }//GEN-LAST:event_deleteButtonActionPerformed
     
 
