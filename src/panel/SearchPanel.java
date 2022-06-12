@@ -13,6 +13,8 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+
 import tugas.akhir.Database;
 
 /**
@@ -22,6 +24,18 @@ import tugas.akhir.Database;
 public class SearchPanel extends javax.swing.JPanel {
     // array of item
     private ArrayList<Item> itemList = new ArrayList<Item>();
+    private JScrollPane contentScrollPane;
+
+    /**
+     * Creates new form SearchPanel
+     */
+
+    public SearchPanel(JScrollPane contentScrollPane) {
+        this.contentScrollPane = contentScrollPane;
+        initComponents();
+        loadListData();
+        loginAsLabel();
+    }
 
     /**
      * Creates new form SearchPanel
@@ -200,8 +214,8 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(insertButton))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,7 +228,7 @@ public class SearchPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(insertButton))
                 .addGap(21, 21, 21)
                 .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -302,7 +316,9 @@ public class SearchPanel extends javax.swing.JPanel {
 
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
         // TODO add your handling code here:
-        
+        contentScrollPane.setViewportView(new InsertPanel(contentScrollPane, searchTextField.getText()));
+        // go to insert project panel
+
     }//GEN-LAST:event_insertButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
@@ -392,11 +408,9 @@ public class SearchPanel extends javax.swing.JPanel {
         // jika user login sebagai admin maka label login sebagai admin akan muncul
         if (Account.getInstance().getRole().equals("admin")) {
 
-            insertButton.setVisible(true);
+            
             jLabel1.setText("Admin");
             return;
-        } else {
-            insertButton.setVisible(false);
         }
 
         try {

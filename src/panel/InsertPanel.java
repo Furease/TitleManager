@@ -6,6 +6,10 @@ package panel;
 
 import javax.swing.JScrollPane;
 
+import model.Account;
+import model.Project;
+import tugas.akhir.Database;
+
 /**
  *
  * @author Fure
@@ -15,9 +19,10 @@ public class InsertPanel extends javax.swing.JPanel {
     /**
     * Creates new form LoginPanel
     */
-    public InsertPanel(JScrollPane contentScrollPane) {
+    public InsertPanel(JScrollPane contentScrollPane, String judul) {
         this.contentScrollPane = contentScrollPane;
         initComponents();
+        judulTextField.setText(judul);
     }
     /**
      * Creates new form InsertPanel
@@ -41,6 +46,7 @@ public class InsertPanel extends javax.swing.JPanel {
         judulTextField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         abstrakTextArea = new javax.swing.JTextArea();
+        jLabel4 = new javax.swing.JLabel();
 
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -57,18 +63,28 @@ public class InsertPanel extends javax.swing.JPanel {
         abstrakTextArea.setRows(5);
         jScrollPane2.setViewportView(abstrakTextArea);
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/icons8_return_32px_1.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(abstrakLabel)
                     .addComponent(judulTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 337, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(judulLabel)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(submitButton, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submitButton)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -85,22 +101,48 @@ public class InsertPanel extends javax.swing.JPanel {
                 .addComponent(abstrakLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(submitButton)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(submitButton)
+                    .addComponent(jLabel4))
                 .addContainerGap(42, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
         // TODO add your handling code here:
-        
+        // submit judul dan abstak ke database
+        try {
+            Project project = new Project();
+            project.setJudul(judulTextField.getText());
+            project.setAbstrak(abstrakTextArea.getText());
+            project.setNim(Account.getInstance().getUsername());
+            if (project.getJudul().equals("")) {
+                throw new Exception("Judul tidak boleh kosong");
+            }
+            
+            Database.getInstance().insertProject(project);
+        // kembali ke panel utama
+        contentScrollPane.setViewportView(new SearchPanel(contentScrollPane));
+        } catch (Exception e) {
+            // dialog error
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_submitButtonActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        
+        // kembali ke login panel
+        contentScrollPane.setViewportView(new SearchPanel(contentScrollPane));
+    }//GEN-LAST:event_jLabel4MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel abstrakLabel;
     private javax.swing.JTextArea abstrakTextArea;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel judulLabel;
     private javax.swing.JTextField judulTextField;

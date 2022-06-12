@@ -147,9 +147,6 @@ public class Database implements Serializable {
         }
     }
 
-    // insert project
-
-
 
     //get Project by id
     public Project getProject(int id) throws SQLException {
@@ -169,6 +166,26 @@ public class Database implements Serializable {
             } else {
                 return null;
             }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    // insert project
+    public void insertProject(Project project) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "INSERT INTO project VALUES(?, ?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, project.getId());
+            pstmt.setString(2, project.getJudul());
+            pstmt.setString(3, project.getAbstrak());
+            pstmt.setString(4, project.getNim());
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw ex;
         } finally {

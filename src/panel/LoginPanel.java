@@ -126,7 +126,7 @@ public class LoginPanel extends javax.swing.JPanel {
         String password = new String(PasswordField.getPassword());
 
         if (Login.getInstance().isLogin(username, password)) {
-            contentScrollPane.setViewportView(new SearchPanel());
+            contentScrollPane.setViewportView(new SearchPanel(contentScrollPane));
         } else {
             JOptionPane.showMessageDialog(this, "Username atau Password salah", "Gagal", JOptionPane.ERROR_MESSAGE);
             userTextField.setText("");
