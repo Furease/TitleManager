@@ -4,6 +4,10 @@
  */
 package tugas.akhir;
 
+import model.UserProfiles;
+import model.Project;
+import model.Item;
+import model.Account;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.sql.*;
@@ -71,16 +75,6 @@ public class Database implements Serializable {
             pstmt.setString(3, userProfiles.getEmail());
             pstmt.setString(4, userProfiles.getNomor());
             pstmt.executeUpdate();
-
-            // sql = "INSERT INTO project VALUES(?, ?, ?)";
-            // pstmt = conn.prepareStatement(sql);
-            // for (int i = 0; i < userProfiles.getJudul().size(); i++) {
-            //     pstmt.setString(1, userProfiles.getJudul().get(i));
-            //     pstmt.setString(2, userProfiles.getAbstrak().get(i));
-            //     pstmt.setString(3, userProfiles.getNim());
-            //     pstmt.executeUpdate();
-            // }
-
         } catch (SQLException ex) {
             throw ex;
         } finally {
@@ -103,23 +97,30 @@ public class Database implements Serializable {
                 userProfiles.setNama(rs.getString("nama"));
                 userProfiles.setEmail(rs.getString("email"));
                 userProfiles.setNomor(rs.getString("nomor"));
-
-                // sql = "SELECT * FROM project WHERE nim = ?";
-                // pstmt = conn.prepareStatement(sql);
-                // pstmt.setString(1, nim);
-                // rs = pstmt.executeQuery();
-                // ArrayList<String> judul = new ArrayList<>();
-                // ArrayList<String> abstrak = new ArrayList<>();
-                // while (rs.next()) {
-                //     judul.add(rs.getString("judul"));
-                //     abstrak.add(rs.getString("abstrak"));
-                // }
-                // userProfiles.setJudul(judul);
-                // userProfiles.setAbstrak(abstrak);
                 return userProfiles;
             } else {
                 return null;
             }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    // update user profile
+    public void updateUserProfile(UserProfiles userProfiles) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "UPDATE user_profiles SET nama = ?, email = ?, nomor = ? WHERE nim = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, userProfiles.getNama());
+            pstmt.setString(2, userProfiles.getEmail());
+            pstmt.setString(3, userProfiles.getNomor());
+            pstmt.setString(4, userProfiles.getNim());
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw ex;
         } finally {
@@ -146,6 +147,10 @@ public class Database implements Serializable {
         }
     }
 
+    // insert project
+
+
+
     //get Project by id
     public Project getProject(int id) throws SQLException {
         Connection conn = getConnection();
@@ -164,6 +169,25 @@ public class Database implements Serializable {
             } else {
                 return null;
             }
+        } catch (SQLException ex) {
+            throw ex;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    // update project
+    public void updateProject(Project project) throws SQLException {
+        Connection conn = getConnection();
+        try {
+            String sql = "UPDATE project SET judul = ?, abstrak = ? WHERE id = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, project.getJudul());
+            pstmt.setString(2, project.getAbstrak());
+            pstmt.setInt(3, project.getId());
+            pstmt.executeUpdate();
         } catch (SQLException ex) {
             throw ex;
         } finally {
@@ -251,101 +275,6 @@ public class Database implements Serializable {
         }
     }
 
-    // public List<Mahasiswa> getListMahasiswa() throws SQLException {
-    //     List<Mahasiswa> mhsList = new ArrayList<>();
-    //     Connection conn = getConnection();
-    //     try {
-    //         String sql = "SELECT * FROM mahasiswa";
-    //         Statement stmt = conn.createStatement();
-    //         ResultSet rs = stmt.executeQuery(sql);
-    //         while (rs.next()) {
-    //             Mahasiswa mhs = new Mahasiswa();
-    //             mhs.setNim(rs.getString("nim"));
-    //             mhs.setNama(rs.getString("nama"));
-    //             mhs.setJenisKelamin(rs.getString("jenis_kelamin"));
-    //             mhs.setUmur(rs.getInt("umur"));
-    //             mhs.setAlamat(rs.getString("alamat"));
-    //             mhs.setProvinsi(rs.getString("provinsi"));
-    //             mhs.setHobi(new ArrayList<>(Arrays.asList(rs.getString("hobi").split(","))));
-    //             mhsList.add(mhs);
-    //         }
-    //     } catch (SQLException ex) {
-    //         throw ex;
-    //     } finally {
-    //         if (conn != null) {
-    //             conn.close();
-    //         }
-    //     }
-
-    //     return mhsList;
-    // }
-
-    // public Mahasiswa getMahasiswa(String nim) throws SQLException {
-    //     Mahasiswa mhs = new Mahasiswa();
-    //     Connection conn = getConnection();
-    //     try {
-    //         String sql = "SELECT * FROM mahasiswa WHERE nim = ?";
-    //         PreparedStatement pstmt = conn.prepareStatement(sql);
-    //         pstmt.setString(1, nim);
-    //         ResultSet rs = pstmt.executeQuery();
-    //         if (rs.next()) {
-    //             mhs.setNim(rs.getString("nim"));
-    //             mhs.setNama(rs.getString("nama"));
-    //             mhs.setJenisKelamin(rs.getString("jenis_kelamin"));
-    //             mhs.setUmur(rs.getInt("umur"));
-    //             mhs.setAlamat(rs.getString("alamat"));
-    //             mhs.setProvinsi(rs.getString("provinsi"));
-    //             mhs.setHobi(new ArrayList<>(Arrays.asList(rs.getString("hobi").split(","))));
-    //         }
-    //     } catch (SQLException ex) {
-    //         throw ex;
-    //     } finally {
-    //         if (conn != null) {
-    //             conn.close();
-    //         }
-    //     }
-
-    //     return mhs;
-    // }
-
-    // public void updateMahasiswa(String nim, Mahasiswa mahasiswa) throws SQLException {
-    //     Connection conn = getConnection();
-    //     try {
-    //         String sql = "UPDATE mahasiswa SET nim = ?, nama = ?, jenis_kelamin = ?, umur = ?, alamat = ?, provinsi = ?, hobi = ? WHERE nim = ?";
-    //         PreparedStatement pstmt = conn.prepareStatement(sql);
-    //         pstmt.setString(1, mahasiswa.getNim());
-    //         pstmt.setString(2, mahasiswa.getNama());
-    //         pstmt.setString(3, mahasiswa.getJenisKelamin());
-    //         pstmt.setInt(4, mahasiswa.getUmur());
-    //         pstmt.setString(5, mahasiswa.getAlamat());
-    //         pstmt.setString(6, mahasiswa.getProvinsi());
-    //         pstmt.setString(7, String.join(",", mahasiswa.getHobi()));
-    //         pstmt.setString(8, nim);
-    //         pstmt.executeUpdate();
-    //     } catch (SQLException ex) {
-    //         throw ex;
-    //     } finally {
-    //         if (conn != null) {
-    //             conn.close();
-    //         }
-    //     }
-    // }
-
-    // public void deleteMahasiswa(String nim) throws SQLException {
-    //     Connection conn = getConnection();
-    //     try {
-    //         String sql = "DELETE FROM mahasiswa WHERE nim = ?";
-    //         PreparedStatement pstmt = conn.prepareStatement(sql);
-    //         pstmt.setString(1, nim);
-    //         pstmt.executeUpdate();
-    //     } catch (SQLException ex) {
-    //         throw ex;
-    //     } finally {
-    //         if (conn != null) {
-    //             conn.close();
-    //         }
-    //     }
-    // }
 
 
     // get username and password from database

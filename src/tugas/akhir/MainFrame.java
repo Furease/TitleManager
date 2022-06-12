@@ -4,6 +4,7 @@
  */
 package tugas.akhir;
 
+import panel.LoginPanel;
 import javax.swing.UIManager;
 
 import com.formdev.flatlaf.FlatDarculaLaf;
