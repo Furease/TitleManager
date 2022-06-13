@@ -4,6 +4,7 @@
  */
 package panel;
 
+import java.awt.Color;
 import model.UserProfiles;
 import model.Project;
 import model.Item;
@@ -174,6 +175,16 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31))
         );
 
+        searchTextField.setForeground(new java.awt.Color(153, 153, 153));
+        searchTextField.setText("Masukkan Judul Project...");
+        searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                searchTextFieldFocusLost(evt);
+            }
+        });
         searchTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchTextFieldKeyReleased(evt);
@@ -252,8 +263,13 @@ public class SearchPanel extends javax.swing.JPanel {
     private void jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMouseClicked
         // TODO add your handling code here:
         // Search clicked data
+        
         int index = jList.getSelectedIndex();
-
+        
+        // jika list kosong maka tidak ada yang di klik / return
+        if (index == -1) {
+            return;
+        }
         // search itemList by selected index
         Item item = itemList.get(index);
 
@@ -354,6 +370,12 @@ public class SearchPanel extends javax.swing.JPanel {
             // batal update
             JOptionPane.showMessageDialog(this, "Batal mengubah data", "Batal", JOptionPane.INFORMATION_MESSAGE);
         }
+
+        // load list
+        loadListData();
+
+        // close dialog
+        projectDialog.dispose();
         
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -379,11 +401,38 @@ public class SearchPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Batal menghapus data", "Batal", JOptionPane.INFORMATION_MESSAGE);
         }
 
+        // load list
+        loadListData();
+
+        // close dialog
+        projectDialog.dispose();
+
     }//GEN-LAST:event_deleteButtonActionPerformed
+
+    private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
+        // TODO add your handling code here:
+
+        // set text to empty
+        if (searchTextField.getText().equals("Masukkan Judul Project...")) {
+            searchTextField.setText("");
+            // text opacity to 100%
+            searchTextField.setForeground(new Color(187,187,187));
+        }
+    }//GEN-LAST:event_searchTextFieldFocusGained
+
+    private void searchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusLost
+        // TODO add your handling code here:
+
+        // set text to default
+        if (searchTextField.getText().equals("")) {
+            searchTextField.setText("Masukkan Judul Project...");
+            searchTextField.setForeground(Color.GRAY);
+        }
+    }//GEN-LAST:event_searchTextFieldFocusLost
     
 
     private void loadListData() {
-        DefaultListModel<String> model = new DefaultListModel<String>();
+        DefaultListModel<String> model = new DefaultListModel<>();
         // list model object
         String search = searchTextField.getText();
 
