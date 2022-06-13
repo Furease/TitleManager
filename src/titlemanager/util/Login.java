@@ -31,7 +31,7 @@ public class Login {
         try {
             account = Database.getInstance().getUser(username);
 
-            if (account.getUsername().equals(username) && account.getPassword().equals(password)) {
+            if (account.getUsername().equals(username) && account.getPassword().equals(Utils.encryptPassword(password))) {
                 isLog = true;
                 return isLog;
             }

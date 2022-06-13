@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import titlemanager.util.Database;
+import titlemanager.util.Utils;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -154,7 +155,7 @@ public class SignUpPassPanel extends javax.swing.JPanel {
 
             if (password.equals(confirmPassword)) {
                 try {
-                    Database.getInstance().setUser(username, password);
+                    Database.getInstance().setUser(username, Utils.encryptPassword(password));
                     JOptionPane.showMessageDialog(this, "Sign Up Success");
                     contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
                 } catch (Exception e) {
