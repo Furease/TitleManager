@@ -1,17 +1,12 @@
 package titlemanager.panel;
 
-import titlemanager.panel.LoginPanel;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+
 import titlemanager.util.Database;
 import titlemanager.util.Utils;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 
 /**
  *
