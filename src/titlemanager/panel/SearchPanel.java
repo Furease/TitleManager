@@ -320,7 +320,7 @@ public class SearchPanel extends javax.swing.JPanel {
 
             // Jika user bukan pemilik project maka tidak bisa edit
             if (!user.getNim().equals(Account.getInstance().getUsername()) 
-                    && !Account.getInstance().getUsername().equals("admin")) {
+                    && !Account.getInstance().getRole().equals("admin")) {
                 // disable edit all text field
                 judulTextField.setEditable(false);
                 abstrakTextArea.setEditable(false);
