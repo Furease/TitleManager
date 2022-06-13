@@ -1,25 +1,29 @@
 package titlemanager.panel;
 
 import javax.swing.JScrollPane;
-
 import titlemanager.model.Account;
 import titlemanager.model.Project;
 import titlemanager.util.Database;
 
 /**
+ * Class InsertPanel menampilkan panel untuk menambahkan data project.
  *
  * @author Fure
  */
 public class InsertPanel extends javax.swing.JPanel {
     private JScrollPane contentScrollPane;
+
     /**
     * Creates new form LoginPanel
+    * @param contentScrollPane JScrollPane untuk menampilkan panel ini
+    * @param judul judul dari panel ini
     */
     public InsertPanel(JScrollPane contentScrollPane, String judul) {
         this.contentScrollPane = contentScrollPane;
         initComponents();
         judulTextField.setText(judul);
     }
+
     /**
      * Creates new form InsertPanel
      */
@@ -111,32 +115,38 @@ public class InsertPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method untuk menyimpan data project yang baru.
+     * @param evt
+     */
     private void submitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitButtonActionPerformed
-        // TODO add your handling code here:
-        // submit judul dan abstak ke database
+        // Submit data ke database
         try {
             Project project = new Project();
             project.setJudul(judulTextField.getText());
             project.setAbstrak(abstrakTextArea.getText());
             project.setNim(Account.getInstance().getUsername());
+
             if (project.getJudul().equals("")) {
                 throw new Exception("Judul tidak boleh kosong");
             }
             
             Database.getInstance().insertProject(project);
-        // kembali ke panel utama
+
+        // Kembali ke panel utama
         contentScrollPane.setViewportView(new SearchPanel(contentScrollPane));
         } catch (Exception e) {
-            // dialog error
+            // Dialog error
             javax.swing.JOptionPane.showMessageDialog(this, e.getMessage(), "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-
     }//GEN-LAST:event_submitButtonActionPerformed
 
+    /**
+     * Method untuk menutup panel ini, kembali ke panel utama.
+     * @param evt
+     */
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-        
-        // kembali ke login panel
+        // Kembali ke panel utama
         contentScrollPane.setViewportView(new SearchPanel(contentScrollPane));
     }//GEN-LAST:event_jLabel4MouseClicked
 

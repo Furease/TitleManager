@@ -4,12 +4,15 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- *
+ * Class UserProfiles untuk menyimpan data user profiles.
+ * 
  * @author Fure
  */
 public class UserProfiles implements Serializable {
-    private String nim, nama, email, nomor;
-    // private ArrayList<String> judul, abstrak;
+    private String nim;
+    private String nama;
+    private String email;
+    private String nomor;
 
     public String getNim() {
         return nim;
@@ -42,20 +45,4 @@ public class UserProfiles implements Serializable {
     public void setNomor(String nomor) {
         this.nomor = nomor;
     }
-
-    // public ArrayList<String> getJudul() {
-    //     return judul;
-    // }
-
-    // public void setJudul(ArrayList<String> judul) {
-    //     this.judul = judul;
-    // }
-
-    // public ArrayList<String> getAbstrak() {
-    //     return abstrak;
-    // }
-
-    // public void setAbstrak(ArrayList<String> abstrak) {
-    //     this.abstrak = abstrak;
-    // }
 }

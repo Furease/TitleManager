@@ -9,7 +9,9 @@ import titlemanager.util.Database;
 import titlemanager.util.Utils;
 
 /**
- *
+ * Class SignUpPassPanel menampilkan panel untuk sign up,
+ * untuk mengisi password.
+ * 
  * @author Fure
  */
 public class SignUpPassPanel extends javax.swing.JPanel {
@@ -17,6 +19,8 @@ public class SignUpPassPanel extends javax.swing.JPanel {
     private String username;
     /**
      * Creates new form SignUpPass
+     * @param contentScrollPane JScrollPane untuk menampilkan panel ini
+     * @param username username untuk index database
      */
     public SignUpPassPanel(JScrollPane contentScrollPane, String username) {
         this.contentScrollPane = contentScrollPane;
@@ -26,6 +30,9 @@ public class SignUpPassPanel extends javax.swing.JPanel {
         passwordField.requestFocus();
     }
 
+    /**
+     * Creates new form SignUpPass
+     */
     public SignUpPassPanel() {
         initComponents();
     }
@@ -133,8 +140,11 @@ public class SignUpPassPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method untuk menyimpan data form ke database
+     * @param evt
+     */
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // TODO add your handling code here:
         String password = new String(passwordField.getPassword());
         String confirmPassword = new String(confirmPasswordField.getPassword());
         // Field validation
@@ -164,31 +174,42 @@ public class SignUpPassPanel extends javax.swing.JPanel {
         clearForm();
     }//GEN-LAST:event_saveButtonActionPerformed
 
+    /**
+     * Method untuk mengubah fokus ke field berikutnya
+     * @param evt
+     */
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
         confirmPasswordField.requestFocus();
     }//GEN-LAST:event_passwordFieldActionPerformed
 
+    /**
+     * Method untuk mengubah fokus ke field berikutnya
+     * @param evt
+     */
     private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
-        // TODO add your handling code here:
         saveButton.doClick();
     }//GEN-LAST:event_confirmPasswordFieldActionPerformed
 
+    /**
+     * Method untuk kembali ke panel login dan menghapus data user yang sudah
+     * dimasukkan sebelumnya
+     * @param evt
+     */
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
-
         // hapus data user profile 
         try {
             Database.getInstance().deleteUserProfile(username);
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
         // kembali ke login panel
         contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
-
     }//GEN-LAST:event_jLabel4MouseClicked
 
+    /**
+     * Method untuk membersihkan field
+     */
     private void clearForm() {
         passwordField.setText("");
         confirmPasswordField.setText("");

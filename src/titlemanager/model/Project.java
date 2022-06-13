@@ -1,12 +1,15 @@
 package titlemanager.model;
 
 /**
- *
+ * Class Project untuk membungkus data project. 
+ * 
  * @author Fure
  */
 public class Project {
-    int id;
-    String judul, abstrak, nim;
+    int     id;
+    String  nim;
+    String  abstrak;
+    String  judul;
 
     public int getId() {
         return id;

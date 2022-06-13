@@ -6,17 +6,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class Utils merupakan class yang berfungsi untuk menyimpan fungsi-fungsi
+ * 
  * @author Fure
  */
 public class Utils {
+
+    /**
+     * Method untuk mengenkripsi password
+     * @param password
+     * @return
+     */
     public static String encryptPassword(String password){
         String encryptedpassword = null;  
+
         try {  
             MessageDigest m = MessageDigest.getInstance("MD5");
             m.update(password.getBytes());
             byte[] bytes = m.digest();
             StringBuilder s = new StringBuilder();  
+
             for(int i=0; i< bytes.length ;i++)  
             {  
                 s.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));  
@@ -25,6 +34,7 @@ public class Utils {
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return encryptedpassword;
     }
 }

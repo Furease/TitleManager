@@ -1,32 +1,31 @@
 package titlemanager.panel;
 
-import java.awt.Color;
 import titlemanager.model.UserProfiles;
 import titlemanager.model.Project;
 import titlemanager.model.Item;
 import titlemanager.model.Account;
+import titlemanager.util.Database;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-
-import titlemanager.util.Database;
+import java.awt.Color;
 
 /**
+ * Class SearchPanel menampilkan panel untuk mencari judul project yang telah 
+ * ada di database sebelum menginputkan judul project baru.
  *
  * @author Fure
  */
 public class SearchPanel extends javax.swing.JPanel {
-    // array of item
-    private ArrayList<Item> itemList = new ArrayList<Item>();
-    private JScrollPane contentScrollPane;
+    private ArrayList<Item> itemList = new ArrayList<Item>(); // list item yang akan ditampilkan di list
+    private JScrollPane     contentScrollPane;
 
     /**
      * Creates new form SearchPanel
+     * @param contentScrollPane JScrollPane untuk menampilkan panel ini
      */
-
     public SearchPanel(JScrollPane contentScrollPane) {
         this.contentScrollPane = contentScrollPane;
         initComponents();
@@ -187,9 +186,6 @@ public class SearchPanel extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 searchTextFieldKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                searchTextFieldKeyTyped(evt);
-            }
         });
 
         jScrollPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -269,43 +265,44 @@ public class SearchPanel extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void searchTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyTyped
-        // TODO add your handling code here:
-        // load list
-        
-    }//GEN-LAST:event_searchTextFieldKeyTyped
-
+    /**
+     * Method untuk mengambil data dari database dan menampilkannya
+     * setiap kali user mengetikkan kata.
+     * @param evt
+     */
     private void searchTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyReleased
-        // TODO add your handling code here:
         loadListData();
     }//GEN-LAST:event_searchTextFieldKeyReleased
 
+    /**
+     * Method untuk mengambil data dari database dan menampilkannya
+     * ketika list di klik.
+     * @param evt
+     */
     private void jListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListMouseClicked
-        // TODO add your handling code here:
-        // Search clicked data
-        
         int index = jList.getSelectedIndex();
         
         // jika list kosong maka tidak ada yang di klik / return
         if (index == -1) {
             return;
         }
-        // search itemList by selected index
+
+        // jika list tidak kosong maka ambil data dari list item
         Item item = itemList.get(index);
 
         try {
             Project project = Database.getInstance().getProject(item.getValue());
-            // set data to dialog
             UserProfiles user = Database.getInstance().getUserProfiles(project.getNim());
+
             judulTextField.setText(project.getJudul());
             abstrakTextArea.setText(project.getAbstrak());
             namaTextField.setText(user.getNama());
             nimTextField.setText(user.getNim());
             emailTextField.setText(user.getEmail());
             nomorTextField.setText(user.getNomor());
-            idTextField.setText(String.valueOf(project.getId()));
 
-            idTextField.setVisible(false);
+            idTextField.setText(String.valueOf(project.getId()));
+            idTextField.setVisible(false);  // set id invisible
 
 
             // dialog size
@@ -314,11 +311,12 @@ public class SearchPanel extends javax.swing.JPanel {
             // show dialog
             projectDialog.setVisible(true);
 
-            // show dialog in center of screen
+            // show dialog di tengah layar
             projectDialog.setLocationRelativeTo(null);
 
             // Jika user bukan pemilik project maka tidak bisa edit
-            if (!user.getNim().equals(Account.getInstance().getUsername()) && !Account.getInstance().getUsername().equals("admin")) {
+            if (!user.getNim().equals(Account.getInstance().getUsername()) 
+                    && !Account.getInstance().getUsername().equals("admin")) {
                 // disable edit all text field
                 judulTextField.setEditable(false);
                 abstrakTextArea.setEditable(false);
@@ -333,42 +331,39 @@ public class SearchPanel extends javax.swing.JPanel {
                 judulTextField.setEditable(true);
                 abstrakTextArea.setEditable(true);
                 namaTextField.setEditable(true);
-                // nimTextField.setEditable(true);
                 emailTextField.setEditable(true);
                 nomorTextField.setEditable(true);
                 updateButton.setVisible(true);
                 deleteButton.setVisible(true);
             }
-
-
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            // JOptionPane.showMessageDialog(this, "Gagal mengambil data", "Gagal", JOptionPane.ERROR_MESSAGE);
         }
-        
-        // System.out.println(item.getDescription());
     }//GEN-LAST:event_jListMouseClicked
 
+    /**
+     * Method untuk menuju halaman insert project.
+     * @param evt
+     */
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
-        // TODO add your handling code here:
+        // cek apakah placeholder text masih ada
         if (searchTextField.getText().equals("Masukkan Judul Project...")) {
             searchTextField.setText("");
         }
-        contentScrollPane.setViewportView(new InsertPanel(contentScrollPane, searchTextField.getText()));
-        // go to insert project panel
 
+        // Menuju halaman insert project
+        contentScrollPane.setViewportView(new InsertPanel(contentScrollPane, searchTextField.getText()));
     }//GEN-LAST:event_insertButtonActionPerformed
 
+    /**
+     * Method untuk mengupdate data project.
+     * @param evt
+     */
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        // TODO add your handling code here:
-
-        // konfirm update dialog
+        // Konfirm update dialog
         int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin mengubah data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
 
         if (confirm == JOptionPane.YES_OPTION) {
-
-            // update data
             Project project = new Project();
             project.setJudul(judulTextField.getText());
             project.setAbstrak(abstrakTextArea.getText());
@@ -390,7 +385,7 @@ public class SearchPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            // batal update
+            // Jika batal maka muncukan dialog
             JOptionPane.showMessageDialog(this, "Batal mengubah data", "Batal", JOptionPane.INFORMATION_MESSAGE);
         }
 
@@ -402,16 +397,18 @@ public class SearchPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    /**
+     * Method untuk menghapus data project.
+     * @param evt
+     */
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        // TODO add your handling code here:
-
-        // konfirm delete dialog
+        // Konfirm delete dialog
         int confirm = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin menghapus data ini?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
 
         if (confirm == JOptionPane.YES_OPTION) {
-
-            // delete data
+            // delete data berdasarkan id
             int id = Integer.parseInt(idTextField.getText());
+
             try {
                 Database.getInstance().deleteProject(id);
                 JOptionPane.showMessageDialog(this, "Berhasil menghapus data", "Berhasil",
@@ -420,7 +417,7 @@ public class SearchPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
-            // batal delete
+            // jika batal maka munculkan dialog
             JOptionPane.showMessageDialog(this, "Batal menghapus data", "Batal", JOptionPane.INFORMATION_MESSAGE);
         }
 
@@ -432,42 +429,52 @@ public class SearchPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_deleteButtonActionPerformed
 
+    /**
+     * Method untuk menghilangkan placeholder text.
+     * @param evt
+     */
     private void searchTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusGained
-        // TODO add your handling code here:
-
-        // set text to empty
+        // Kosongkan placeholder text
         if (searchTextField.getText().equals("Masukkan Judul Project...")) {
             searchTextField.setText("");
-            // text opacity to 100%
             searchTextField.setForeground(new Color(187,187,187));
         }
     }//GEN-LAST:event_searchTextFieldFocusGained
 
+    /**
+     * Method untuk menampilkan placeholder text.
+     * @param evt
+     */
     private void searchTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_searchTextFieldFocusLost
-        // TODO add your handling code here:
-
-        // set text to default
+        // Munculkan placeholder text ketika kosong
         if (searchTextField.getText().equals("")) {
             searchTextField.setText("Masukkan Judul Project...");
             searchTextField.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_searchTextFieldFocusLost
 
+    /**
+     * Method untuk kembali ke login (Log out).
+     * @param evt
+     */
     private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
-        // TODO add your handling code here:
+        // Logout menuju ke login panel dan menghapus data pada Objek Account
         contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
         Account.getInstance().clear();
     }//GEN-LAST:event_logoutLabelMouseClicked
     
 
+    /**
+     * Method untuk menampilkan data pada list.
+     */
     private void loadListData() {
         DefaultListModel<String> model = new DefaultListModel<>();
-        // list model object
         String search = searchTextField.getText();
 
-        // get data from database
+        // get data dari database
         try {
             itemList = Database.getInstance().getJudulByKeyword(search);
+
             for (Item item : itemList) {
                 model.addElement(item.getDescription());
             }
@@ -477,28 +484,25 @@ public class SearchPanel extends javax.swing.JPanel {
         }
         
         jList.setModel(model);
-        
     }
 
+    /**
+     * Method untuk menampilkan nama user.
+     */
     private void loginAsLabel() {
-        // TODO add your handling code here:
-
         // jika user login sebagai admin maka label login sebagai admin akan muncul
         if (Account.getInstance().getRole().equals("admin")) {
-
-            
             jLabel1.setText("Admin");
             return;
         }
 
+        // Menampilkan nama user
         try {
             jLabel1.setText("Login as: "
                     + Database.getInstance().getUserProfiles(Account.getInstance().getUsername()).getNama());
         } catch (SQLException ex) {
             System.err.println(ex);
         }
-
-    
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel abstrakLabel;

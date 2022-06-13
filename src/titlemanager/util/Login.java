@@ -4,11 +4,17 @@ import titlemanager.model.Account;
 import java.sql.SQLException;
 
 /**
- *
+ * Class Login melakukan validasi login.
+ * 
  * @author Fure
  */
 public class Login {
     private static Login instance;
+
+    /**
+     * Method untuk mendapatkan instance Login.
+     * @return
+     */
     public static Login getInstance() {
         if (instance == null) {
             instance = new Login();
@@ -16,6 +22,12 @@ public class Login {
         return instance;
     }
 
+    /**
+     * Method untuk melakukan validasi login.
+     * @param username
+     * @param password
+     * @return
+     */
     public boolean isLogin(String username, String password) {
         boolean isLog = false;
         Account account = Account.getInstance();

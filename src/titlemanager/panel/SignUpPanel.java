@@ -2,13 +2,13 @@ package titlemanager.panel;
 
 import titlemanager.model.UserProfiles;
 import java.sql.SQLException;
-
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import titlemanager.util.Database;
 
 /**
- *
+ * Class SignUpPanel untuk menampilkan panel sign up
+ * 
  * @author Fure
  */
 public class SignUpPanel extends javax.swing.JPanel {
@@ -16,6 +16,7 @@ public class SignUpPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SIgnUpPanel
+     * @param contentScrollPane scroll pane yang akan diisi dengan panel ini
      */
     public SignUpPanel(JScrollPane contentScrollPane) {
         this.contentScrollPane = contentScrollPane;
@@ -149,12 +150,12 @@ public class SignUpPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        // TODO add your handling code here:
         UserProfiles user = new UserProfiles();
         user.setNim(nimTextField.getText());
         user.setNama(namaTextField.getText());
         user.setEmail(emailTextField.getText());
         user.setNomor(nomorTextField.getText());
+        
         // check if textField is already filled
         if (nimTextField.getText().isEmpty() || namaTextField.getText().isEmpty() || emailTextField.getText().isEmpty()
                 || nomorTextField.getText().isEmpty()) {
@@ -179,38 +180,54 @@ public class SignUpPanel extends javax.swing.JPanel {
         nimTextField.requestFocus();
     }//GEN-LAST:event_nextButtonActionPerformed
 
+    /**
+     * Mengubah fokus ke field berikutnya
+     * @param evt
+     */
     private void nimTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nimTextFieldActionPerformed
-        // TODO add your handling code here:
-        // if enter is pressed, go to next textField
+        // jika enter ditekan, menuju ke field berikutnya
         namaTextField.requestFocus();
     }//GEN-LAST:event_nimTextFieldActionPerformed
 
+    /**
+     * Mengubah fokus ke field berikutnya
+     * @param evt
+     */
     private void namaTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namaTextFieldActionPerformed
-        // TODO add your handling code here:
-        // if enter is pressed, go to next textField
+        // jika enter ditekan, menuju ke field berikutnya
         emailTextField.requestFocus();
     }//GEN-LAST:event_namaTextFieldActionPerformed
 
+    /**
+     * Mengubah fokus ke field berikutnya
+     * @param evt
+     */
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
-        // TODO add your handling code here:
-        // if enter is pressed, go to next textField
+        // jika enter ditekan, menuju ke field berikutnya
         nomorTextField.requestFocus();
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
+    /**
+     * Mengubah fokus ke field berikutnya
+     * @param evt
+     */
     private void nomorTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomorTextFieldActionPerformed
-        // TODO add your handling code here:
-        // if enter is pressed, go to next textField
+        // jika enter ditekan, menuju ke field berikutnya
         nextButton.doClick();
     }//GEN-LAST:event_nomorTextFieldActionPerformed
 
+    /**
+     * Mengubah fokus ke field berikutnya
+     * @param evt
+     */
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        // TODO add your handling code here:
-
         // kembali ke login panel
         contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
     }//GEN-LAST:event_jLabel5MouseClicked
 
-    // clearForm
+    /**
+     * Mengosongkan fields
+     */
     private void clearForm() {
         nimTextField.setText("");
         namaTextField.setText("");

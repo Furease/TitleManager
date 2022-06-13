@@ -1,12 +1,13 @@
 package titlemanager.model;
 
 /**
- *
+ * Class Item untuk menyimpan data item secara sementara.
+ * 
  * @author Fure
  */
 public class Item {
-    private int value;
-    private String description;
+    private int     value;              // nilai item atau ID item
+    private String  description;        // deskripsi item
 
     public Item(int value, String description) {
         this.value = value;

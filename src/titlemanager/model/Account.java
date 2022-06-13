@@ -14,6 +14,7 @@ public class Account {
         if (instance == null) {
             instance = new Account();
         }
+        
         return instance;
     }
 
@@ -47,5 +48,4 @@ public class Account {
         password = "";
         role = "";
     }
-
 }

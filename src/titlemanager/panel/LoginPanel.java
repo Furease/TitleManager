@@ -5,13 +5,16 @@ import javax.swing.JScrollPane;
 import titlemanager.util.Login;
 
 /**
+ * Class LoginPanel menampilkan panel untuk login.
  *
  * @author Fure
  */
 public class LoginPanel extends javax.swing.JPanel {
     private JScrollPane contentScrollPane;
+
     /**
     * Creates new form LoginPanel
+    * @param contentScrollPane JScrollPane untuk menampilkan panel ini
     */
     public LoginPanel(JScrollPane contentScrollPane) {
         this.contentScrollPane = contentScrollPane;
@@ -118,36 +121,59 @@ public class LoginPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Method untuk melakukan login
+     * @param evt
+     */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        // TODO add your handling code here:
         String username = userTextField.getText();
         String password = new String(PasswordField.getPassword());
 
+        // Cek apakah username dan password kosong
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Fields tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Cek apakah username dan password sama dengan yang ada di database, jika sama maka login berhasil
         if (Login.getInstance().isLogin(username, password)) {
             contentScrollPane.setViewportView(new SearchPanel(contentScrollPane));
         } else {
             JOptionPane.showMessageDialog(this, "Username atau Password salah", "Gagal", JOptionPane.ERROR_MESSAGE);
+
+            // Kosongkan field username dan password
             userTextField.setText("");
             PasswordField.setText("");
-            // focus ke username
+
+            // Focus ke username field
             userTextField.requestFocus();
         }
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    /**
+     * Method untuk menuju halaman sign up
+     * @param evt
+     */
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
+        // Menuju halaman sign up
         contentScrollPane.setViewportView(new SignUpPanel(contentScrollPane));
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    /**
+     * Method untuk memindahkan focus ke field password
+     * @param evt
+     */
     private void userTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextFieldActionPerformed
-        // TODO add your handling code here:
-        // if press enter key, switch to password field
+        // Ketika enter di tekan, maka pindah ke field password
         PasswordField.requestFocus();
     }//GEN-LAST:event_userTextFieldActionPerformed
 
+    /**
+     * Method untuk menekan login button ketika tombol enter di tekan.
+     * @param evt
+     */
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
-        // TODO add your handling code here:
-        // if press enter key, press login button
+        // Ketika enter di tekan, maka klik tombol login
         loginButton.doClick();
     }//GEN-LAST:event_PasswordFieldActionPerformed
 
