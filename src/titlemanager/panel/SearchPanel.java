@@ -71,7 +71,7 @@ public class SearchPanel extends javax.swing.JPanel {
         searchTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
         insertButton = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         logoutLabel = new javax.swing.JLabel();
@@ -202,8 +202,8 @@ public class SearchPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList);
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        userLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        userLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         insertButton.setText("Insert");
         insertButton.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +233,7 @@ public class SearchPanel extends javax.swing.JPanel {
                         .addGap(9, 9, 9)
                         .addComponent(logoutLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
                         .addComponent(insertButton))
                     .addComponent(jScrollPane1)
@@ -250,7 +250,7 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(insertButton)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(logoutLabel, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,7 +261,7 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, logoutLabel});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {logoutLabel, userLabel});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -492,13 +492,13 @@ public class SearchPanel extends javax.swing.JPanel {
     private void loginAsLabel() {
         // jika user login sebagai admin maka label login sebagai admin akan muncul
         if (Account.getInstance().getRole().equals("admin")) {
-            jLabel1.setText("Admin");
+            userLabel.setText("Admin");
             return;
         }
 
         // Menampilkan nama user
         try {
-            jLabel1.setText("Login as: "
+            userLabel.setText("Login as: "
                     + Database.getInstance().getUserProfiles(Account.getInstance().getUsername()).getNama());
         } catch (SQLException ex) {
             System.err.println(ex);
@@ -512,7 +512,6 @@ public class SearchPanel extends javax.swing.JPanel {
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField idTextField;
     private javax.swing.JButton insertButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
@@ -529,5 +528,6 @@ public class SearchPanel extends javax.swing.JPanel {
     private javax.swing.JDialog projectDialog;
     private javax.swing.JTextField searchTextField;
     private javax.swing.JButton updateButton;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -40,12 +40,12 @@ public class SignUpPanel extends javax.swing.JPanel {
         namaTextField = new javax.swing.JTextField();
         emailTextField = new javax.swing.JTextField();
         nomorTextField = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        nimLabel = new javax.swing.JLabel();
+        namaLabel = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        nomorLabel = new javax.swing.JLabel();
+        backLabel = new javax.swing.JLabel();
         nextButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
 
         nimTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,25 +71,25 @@ public class SignUpPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("NIM");
+        nimLabel.setText("NIM");
 
-        jLabel2.setText("Nama");
+        namaLabel.setText("Nama");
 
-        jLabel3.setText("Email");
+        emailLabel.setText("Email");
 
-        jLabel4.setText("Nomor");
+        nomorLabel.setText("Nomor");
+
+        backLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_return_32px_1.png"))); // NOI18N
+        backLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLabelMouseClicked(evt);
+            }
+        });
 
         nextButton.setText("next");
         nextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nextButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_return_32px_1.png"))); // NOI18N
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel5MouseClicked(evt);
             }
         });
 
@@ -100,11 +100,11 @@ public class SignUpPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(nimLabel)
+                    .addComponent(namaLabel)
+                    .addComponent(emailLabel)
+                    .addComponent(nomorLabel)
+                    .addComponent(backLabel))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(nimTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,24 +124,24 @@ public class SignUpPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(67, 67, 67)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(nimLabel)
                     .addComponent(nimTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(namaLabel)
                     .addComponent(namaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(emailLabel)
                     .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(nomorLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(nextButton)
-                    .addComponent(jLabel5))
+                    .addComponent(backLabel))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -220,10 +220,10 @@ public class SignUpPanel extends javax.swing.JPanel {
      * Mengubah fokus ke field berikutnya
      * @param evt
      */
-    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+    private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
         // kembali ke login panel
         contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
-    }//GEN-LAST:event_jLabel5MouseClicked
+    }//GEN-LAST:event_backLabelMouseClicked
 
     /**
      * Mengosongkan fields
@@ -236,15 +236,15 @@ public class SignUpPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLabel;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailTextField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField namaTextField;
     private javax.swing.JButton nextButton;
+    private javax.swing.JLabel nimLabel;
     private javax.swing.JTextField nimTextField;
+    private javax.swing.JLabel nomorLabel;
     private javax.swing.JTextField nomorTextField;
     // End of variables declaration//GEN-END:variables
 }

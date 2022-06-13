@@ -40,13 +40,24 @@ public class InsertPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        submitButton = new javax.swing.JButton();
         judulLabel = new javax.swing.JLabel();
         abstrakLabel = new javax.swing.JLabel();
+        backLabel = new javax.swing.JLabel();
+        submitButton = new javax.swing.JButton();
         judulTextField = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         abstrakTextArea = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
+
+        judulLabel.setText("Judul");
+
+        abstrakLabel.setText("Abstrak");
+
+        backLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_return_32px_1.png"))); // NOI18N
+        backLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLabelMouseClicked(evt);
+            }
+        });
 
         submitButton.setText("Submit");
         submitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,20 +66,9 @@ public class InsertPanel extends javax.swing.JPanel {
             }
         });
 
-        judulLabel.setText("Judul");
-
-        abstrakLabel.setText("Abstrak");
-
         abstrakTextArea.setColumns(20);
         abstrakTextArea.setRows(5);
         jScrollPane2.setViewportView(abstrakTextArea);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_return_32px_1.png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -85,7 +85,7 @@ public class InsertPanel extends javax.swing.JPanel {
                                     .addComponent(judulLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 323, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(backLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(submitButton)
                                 .addGap(17, 17, 17))))
@@ -109,7 +109,7 @@ public class InsertPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                    .addComponent(backLabel)
                     .addComponent(submitButton))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -145,16 +145,16 @@ public class InsertPanel extends javax.swing.JPanel {
      * Method untuk menutup panel ini, kembali ke panel utama.
      * @param evt
      */
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
         // Kembali ke panel utama
         contentScrollPane.setViewportView(new SearchPanel(contentScrollPane));
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_backLabelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel abstrakLabel;
     private javax.swing.JTextArea abstrakTextArea;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel backLabel;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel judulLabel;
     private javax.swing.JTextField judulTextField;

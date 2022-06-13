@@ -37,20 +37,20 @@ public class LoginPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
         userTextField = new javax.swing.JTextField();
         PasswordField = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        signUpLabel = new javax.swing.JLabel();
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_user_16px.png"))); // NOI18N
-        jLabel1.setLabelFor(userTextField);
-        jLabel1.setText("Username");
+        usernameLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_user_16px.png"))); // NOI18N
+        usernameLabel.setLabelFor(userTextField);
+        usernameLabel.setText("Username");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_password_16px.png"))); // NOI18N
-        jLabel2.setLabelFor(PasswordField);
-        jLabel2.setText("Password");
+        passwordLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_password_16px.png"))); // NOI18N
+        passwordLabel.setLabelFor(PasswordField);
+        passwordLabel.setText("Password");
 
         userTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,10 +71,10 @@ public class LoginPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Sign Up");
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+        signUpLabel.setText("Sign Up");
+        signUpLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
+                signUpLabelMouseClicked(evt);
             }
         });
 
@@ -86,13 +86,13 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(signUpLabel)
                         .addGap(18, 18, 18)
                         .addComponent(loginButton))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
+                            .addComponent(usernameLabel)
+                            .addComponent(passwordLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,14 +108,14 @@ public class LoginPanel extends javax.swing.JPanel {
                 .addContainerGap(89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(usernameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(passwordLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(signUpLabel)
                     .addComponent(loginButton))
                 .addGap(83, 83, 83))
         );
@@ -154,10 +154,10 @@ public class LoginPanel extends javax.swing.JPanel {
      * Method untuk menuju halaman sign up
      * @param evt
      */
-    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+    private void signUpLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_signUpLabelMouseClicked
         // Menuju halaman sign up
         contentScrollPane.setViewportView(new SignUpPanel(contentScrollPane));
-    }//GEN-LAST:event_jLabel3MouseClicked
+    }//GEN-LAST:event_signUpLabelMouseClicked
 
     /**
      * Method untuk memindahkan focus ke field password
@@ -180,10 +180,10 @@ public class LoginPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PasswordField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JButton loginButton;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel signUpLabel;
     private javax.swing.JTextField userTextField;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

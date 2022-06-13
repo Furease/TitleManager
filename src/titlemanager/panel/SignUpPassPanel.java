@@ -50,10 +50,10 @@ public class SignUpPassPanel extends javax.swing.JPanel {
         passwordField = new javax.swing.JPasswordField();
         confirmPasswordField = new javax.swing.JPasswordField();
         saveButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        pasword2Label = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
+        backLabel = new javax.swing.JLabel();
 
         usernameTextField.setEditable(false);
 
@@ -76,16 +76,16 @@ public class SignUpPassPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Password");
+        passwordLabel.setText("Password");
 
-        jLabel2.setText("Konfirmasi Password");
+        pasword2Label.setText("Konfirmasi Password");
 
-        jLabel3.setText("Username / NIM");
+        usernameLabel.setText("Username / NIM");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_return_32px_1.png"))); // NOI18N
-        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+        backLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_return_32px_1.png"))); // NOI18N
+        backLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel4MouseClicked(evt);
+                backLabelMouseClicked(evt);
             }
         });
 
@@ -97,17 +97,17 @@ public class SignUpPassPanel extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(passwordLabel)
                         .addGap(92, 92, 92)
                         .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(usernameLabel)
                         .addGap(55, 55, 55)
                         .addComponent(usernameTextField))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4))
+                            .addComponent(pasword2Label)
+                            .addComponent(backLabel))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
@@ -123,19 +123,19 @@ public class SignUpPassPanel extends javax.swing.JPanel {
                 .addGap(98, 98, 98)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(usernameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(passwordLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(pasword2Label))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveButton)
-                    .addComponent(jLabel4))
+                    .addComponent(backLabel))
                 .addGap(72, 72, 72))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -195,7 +195,7 @@ public class SignUpPassPanel extends javax.swing.JPanel {
      * dimasukkan sebelumnya
      * @param evt
      */
-    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+    private void backLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLabelMouseClicked
         // hapus data user profile 
         try {
             Database.getInstance().deleteUserProfile(username);
@@ -205,7 +205,7 @@ public class SignUpPassPanel extends javax.swing.JPanel {
 
         // kembali ke login panel
         contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
-    }//GEN-LAST:event_jLabel4MouseClicked
+    }//GEN-LAST:event_backLabelMouseClicked
 
     /**
      * Method untuk membersihkan field
@@ -215,13 +215,13 @@ public class SignUpPassPanel extends javax.swing.JPanel {
         confirmPasswordField.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel backLabel;
     private javax.swing.JPasswordField confirmPasswordField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel pasword2Label;
     private javax.swing.JButton saveButton;
+    private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
