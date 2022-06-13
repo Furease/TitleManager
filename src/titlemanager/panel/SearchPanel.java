@@ -74,6 +74,8 @@ public class SearchPanel extends javax.swing.JPanel {
         jList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
         insertButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        logoutLabel = new javax.swing.JLabel();
 
         namaLabel.setText("Nama");
 
@@ -171,7 +173,7 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addGap(31, 31, 31))
         );
 
-        searchTextField.setForeground(new java.awt.Color(153, 153, 153));
+        searchTextField.setForeground(new java.awt.Color(102, 102, 102));
         searchTextField.setText("Masukkan Judul Project...");
         searchTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -204,6 +206,7 @@ public class SearchPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList);
 
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         insertButton.setText("Insert");
@@ -213,22 +216,36 @@ public class SearchPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Judul dalam database :");
+
+        logoutLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_Logout_16px_2.png"))); // NOI18N
+        logoutLabel.setText("Logout");
+        logoutLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoutLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(logoutLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(insertButton))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
-                            .addComponent(searchTextField))))
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(searchTextField))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -237,13 +254,19 @@ public class SearchPanel extends javax.swing.JPanel {
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(insertButton)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(logoutLabel, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addComponent(searchTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel1, logoutLabel});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchTextFieldKeyTyped
@@ -329,6 +352,9 @@ public class SearchPanel extends javax.swing.JPanel {
 
     private void insertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertButtonActionPerformed
         // TODO add your handling code here:
+        if (searchTextField.getText().equals("Masukkan Judul Project...")) {
+            searchTextField.setText("");
+        }
         contentScrollPane.setViewportView(new InsertPanel(contentScrollPane, searchTextField.getText()));
         // go to insert project panel
 
@@ -426,6 +452,12 @@ public class SearchPanel extends javax.swing.JPanel {
             searchTextField.setForeground(Color.GRAY);
         }
     }//GEN-LAST:event_searchTextFieldFocusLost
+
+    private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
+        // TODO add your handling code here:
+        contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
+        Account.getInstance().clear();
+    }//GEN-LAST:event_logoutLabelMouseClicked
     
 
     private void loadListData() {
@@ -477,11 +509,13 @@ public class SearchPanel extends javax.swing.JPanel {
     private javax.swing.JTextField idTextField;
     private javax.swing.JButton insertButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jList;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel judulLabel;
     private javax.swing.JTextField judulTextField;
+    private javax.swing.JLabel logoutLabel;
     private javax.swing.JLabel namaLabel;
     private javax.swing.JTextField namaTextField;
     private javax.swing.JLabel nimLabel;
