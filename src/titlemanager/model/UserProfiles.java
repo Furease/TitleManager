@@ -1,7 +1,6 @@
 package titlemanager.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Class UserProfiles untuk menyimpan data user profiles.

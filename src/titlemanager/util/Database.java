@@ -10,9 +10,9 @@ import java.sql.*;
 
 
 /**
- * Class Database mengimplementasikan interface Serializable untuk menyimpan data ke database.
- * menangani koneksi ke database.
- *
+ * Class Database mengimplementasikan interface Serializable untuk menyimpan
+ * dan mengambil data dari database.
+ * 
  * @author Fure
  */
 public class Database implements Serializable {
