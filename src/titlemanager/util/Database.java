@@ -18,12 +18,12 @@ import java.sql.*;
 public class Database implements Serializable {
     public static Database instance;
 
-    private final String DB_TYPE = "mysql";
-    private final String DB_HOST = "localhost";
-    private final String DB_PORT = "3306";
-    private final String DB_NAME = "titlemanager";
-    private final String DB_USER = "root";
-    private final String DB_PASS = "";
+    private final String DB_TYPE = "mysql";         // database type
+    private final String DB_HOST = "localhost";     // database host
+    private final String DB_PORT = "3306";          // database port
+    private final String DB_NAME = "titlemanager";  // nama database
+    private final String DB_USER = "root";          // username database
+    private final String DB_PASS = "";              // password database
 
     /**
      * Constructor Database.

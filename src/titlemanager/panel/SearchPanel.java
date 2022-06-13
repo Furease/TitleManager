@@ -92,6 +92,8 @@ public class SearchPanel extends javax.swing.JPanel {
         abstrakTextArea.setRows(5);
         jScrollPane2.setViewportView(abstrakTextArea);
 
+        nimTextField.setEditable(false);
+
         updateButton.setText("Update");
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +107,8 @@ public class SearchPanel extends javax.swing.JPanel {
                 deleteButtonActionPerformed(evt);
             }
         });
+
+        idTextField.setEditable(false);
 
         javax.swing.GroupLayout projectDialogLayout = new javax.swing.GroupLayout(projectDialog.getContentPane());
         projectDialog.getContentPane().setLayout(projectDialogLayout);
