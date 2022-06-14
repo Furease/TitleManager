@@ -94,12 +94,12 @@ public class SignUpPassPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(passwordLabel)
                         .addGap(92, 92, 92)
-                        .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                        .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(usernameLabel)
                         .addGap(55, 55, 55)
@@ -115,12 +115,12 @@ public class SignUpPassPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(saveButton)))))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addGap(53, 53, 53))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(98, 98, 98)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usernameLabel))
@@ -136,7 +136,7 @@ public class SignUpPassPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveButton)
                     .addComponent(backLabel))
-                .addGap(72, 72, 72))
+                .addGap(63, 63, 63))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -153,22 +153,30 @@ public class SignUpPassPanel extends javax.swing.JPanel {
             clearForm();
             return;
         }
+
+        if (password.equals(confirmPassword)) {
+            try {
+                Utils.validatePassword(password);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                clearForm();
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Password tidak sama");
+        }
+
         // yes or no dialog
         int reply = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin menyimpan password?", "Konfirmasi",
                 JOptionPane.YES_NO_OPTION);
         if (reply == JOptionPane.YES_OPTION) {
-
-            if (password.equals(confirmPassword)) {
-                try {
-                    Database.getInstance().setUser(username, Utils.encryptPassword(password));
-                    JOptionPane.showMessageDialog(this, "Sign Up Success");
-                    contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    JOptionPane.showMessageDialog(this, "Sign Up Failed", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Password tidak sama");
+            try {
+                Database.getInstance().setUser(username, Utils.encryptPassword(password));
+                JOptionPane.showMessageDialog(this, "Sign Up Success");
+                contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(this, "Sign Up Failed", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         clearForm();

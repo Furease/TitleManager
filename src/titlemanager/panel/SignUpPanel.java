@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import titlemanager.util.Database;
+import titlemanager.util.Utils;
 
 /**
  * Class SignUpPanel untuk menampilkan panel sign up
@@ -159,8 +160,19 @@ public class SignUpPanel extends javax.swing.JPanel {
         // check if textField is already filled
         if (nimTextField.getText().isEmpty() || namaTextField.getText().isEmpty() || emailTextField.getText().isEmpty()
                 || nomorTextField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please fill all the textFields");
+            JOptionPane.showMessageDialog(this, "Harap isi semua field", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+
+            // validasi semua field
+            try {
+                Utils.validateNim(nimTextField.getText());
+                Utils.validateName(namaTextField.getText());
+                Utils.validateEmail(emailTextField.getText());
+                Utils.validateNumber(nomorTextField.getText());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             // konfirimasi
             int result = JOptionPane.showConfirmDialog(this, "Apakah anda yakin ingin menyimpan data ini?",

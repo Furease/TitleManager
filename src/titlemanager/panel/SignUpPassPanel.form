@@ -16,13 +16,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Group type="102" alignment="2" attributes="0">
                       <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="92" pref="92" max="92" attributes="0"/>
-                      <Component id="passwordField" pref="150" max="32767" attributes="0"/>
+                      <Component id="passwordField" pref="138" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="2" attributes="0">
                       <Component id="usernameLabel" min="-2" max="-2" attributes="0"/>
@@ -39,21 +39,21 @@
                               <EmptySpace min="32" pref="32" max="32" attributes="0"/>
                               <Component id="confirmPasswordField" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="saveButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="58" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="62" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="usernameTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="usernameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -73,7 +73,7 @@
                   <Component id="saveButton" min="-2" max="-2" attributes="0"/>
                   <Component id="backLabel" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
