@@ -464,7 +464,12 @@ public class SearchPanel extends javax.swing.JPanel {
     private void logoutLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutLabelMouseClicked
         // Logout menuju ke login panel dan menghapus data pada Objek Account
         contentScrollPane.setViewportView(new LoginPanel(contentScrollPane));
+        
+        // mengosongkan class Account
         Account.getInstance().clear();
+        
+        // close dialog jika ada yang terbuka
+        projectDialog.dispose();
     }//GEN-LAST:event_logoutLabelMouseClicked
     
 

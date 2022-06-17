@@ -3,18 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/panel/SignUpPanel.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/model/Item.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/panel/SignUpPassPanel.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/tugas/akhir/MainFrame.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/panel/SearchPanel.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/model/UserProfiles.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/tugas/akhir/Database.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/icons/icons8_user_32px_2.png</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/panel/LoginPanel.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/tugas/akhir/Login.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/model/Project.java</file>
-            <file>file:/D:/Document/Java/Tugas%20Akhir/src/model/Account.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/util/Login.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/model/UserProfiles.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/util/Database.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/panel/SignUpPassPanel.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/panel/LoginPanel.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/panel/SearchPanel.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/panel/InsertPanel.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/MainFrame.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/util/Utils.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/model/Project.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/model/Item.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/model/Account.java</file>
+            <file>file:/D:/Document/Java/Tugas%20Akhir/src/titlemanager/panel/SignUpPanel.java</file>
         </group>
     </open-files>
 </project-private>

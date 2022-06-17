@@ -22,7 +22,7 @@
                   <Group type="102" alignment="2" attributes="0">
                       <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="92" pref="92" max="92" attributes="0"/>
-                      <Component id="passwordField" pref="138" max="32767" attributes="0"/>
+                      <Component id="passTextField" pref="138" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="2" attributes="0">
                       <Component id="usernameLabel" min="-2" max="-2" attributes="0"/>
@@ -31,13 +31,13 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="pasword2Label" min="-2" max="-2" attributes="0"/>
+                          <Component id="confirmPassLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="backLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="32" pref="32" max="32" attributes="0"/>
-                              <Component id="confirmPasswordField" max="32767" attributes="0"/>
+                              <Component id="confirmPassTextField" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -60,13 +60,13 @@
               </Group>
               <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="passTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="confirmPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="pasword2Label" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="confirmPassTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="confirmPassLabel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -84,14 +84,14 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="passwordField">
+    <Component class="javax.swing.JPasswordField" name="passTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwordFieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passTextFieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="confirmPasswordField">
+    <Component class="javax.swing.JPasswordField" name="confirmPassTextField">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmPasswordFieldActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmPassTextFieldActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="saveButton">
@@ -107,7 +107,7 @@
         <Property name="text" type="java.lang.String" value="Password"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="pasword2Label">
+    <Component class="javax.swing.JLabel" name="confirmPassLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Konfirmasi Password"/>
       </Properties>

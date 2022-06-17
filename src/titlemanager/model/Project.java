@@ -7,9 +7,9 @@ package titlemanager.model;
  */
 public class Project {
     int     id;
-    String  nim;
-    String  abstrak;
     String  judul;
+    String  abstrak;
+    String  nim;
 
     public int getId() {
         return id;

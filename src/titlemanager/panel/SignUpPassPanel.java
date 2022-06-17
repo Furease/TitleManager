@@ -27,7 +27,7 @@ public class SignUpPassPanel extends javax.swing.JPanel {
         this.username = username;
         initComponents();
         usernameTextField.setText(username);
-        passwordField.requestFocus();
+        passTextField.requestFocus();
     }
 
     /**
@@ -47,25 +47,25 @@ public class SignUpPassPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         usernameTextField = new javax.swing.JTextField();
-        passwordField = new javax.swing.JPasswordField();
-        confirmPasswordField = new javax.swing.JPasswordField();
+        passTextField = new javax.swing.JPasswordField();
+        confirmPassTextField = new javax.swing.JPasswordField();
         saveButton = new javax.swing.JButton();
         passwordLabel = new javax.swing.JLabel();
-        pasword2Label = new javax.swing.JLabel();
+        confirmPassLabel = new javax.swing.JLabel();
         usernameLabel = new javax.swing.JLabel();
         backLabel = new javax.swing.JLabel();
 
         usernameTextField.setEditable(false);
 
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
+        passTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
+                passTextFieldActionPerformed(evt);
             }
         });
 
-        confirmPasswordField.addActionListener(new java.awt.event.ActionListener() {
+        confirmPassTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmPasswordFieldActionPerformed(evt);
+                confirmPassTextFieldActionPerformed(evt);
             }
         });
 
@@ -78,7 +78,7 @@ public class SignUpPassPanel extends javax.swing.JPanel {
 
         passwordLabel.setText("Password");
 
-        pasword2Label.setText("Konfirmasi Password");
+        confirmPassLabel.setText("Konfirmasi Password");
 
         usernameLabel.setText("Username / NIM");
 
@@ -99,19 +99,19 @@ public class SignUpPassPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(passwordLabel)
                         .addGap(92, 92, 92)
-                        .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                        .addComponent(passTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(usernameLabel)
                         .addGap(55, 55, 55)
                         .addComponent(usernameTextField))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pasword2Label)
+                            .addComponent(confirmPassLabel)
                             .addComponent(backLabel))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(32, 32, 32)
-                                .addComponent(confirmPasswordField))
+                                .addComponent(confirmPassTextField))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(saveButton)))))
@@ -126,12 +126,12 @@ public class SignUpPassPanel extends javax.swing.JPanel {
                     .addComponent(usernameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pasword2Label))
+                    .addComponent(confirmPassTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmPassLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(saveButton)
@@ -145,8 +145,8 @@ public class SignUpPassPanel extends javax.swing.JPanel {
      * @param evt
      */
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        String password = new String(passwordField.getPassword());
-        String confirmPassword = new String(confirmPasswordField.getPassword());
+        String password = new String(passTextField.getPassword());
+        String confirmPassword = new String(confirmPassTextField.getPassword());
         // Field validation
         if (password.equals("") || confirmPassword.equals("")) {
             JOptionPane.showMessageDialog(this, "Password tidak boleh kosong", "Error", JOptionPane.ERROR_MESSAGE);
@@ -164,6 +164,7 @@ public class SignUpPassPanel extends javax.swing.JPanel {
             }
         } else {
             JOptionPane.showMessageDialog(this, "Password tidak sama");
+            return;
         }
 
         // yes or no dialog
@@ -186,17 +187,17 @@ public class SignUpPassPanel extends javax.swing.JPanel {
      * Method untuk mengubah fokus ke field berikutnya
      * @param evt
      */
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        confirmPasswordField.requestFocus();
-    }//GEN-LAST:event_passwordFieldActionPerformed
+    private void passTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTextFieldActionPerformed
+        confirmPassTextField.requestFocus();
+    }//GEN-LAST:event_passTextFieldActionPerformed
 
     /**
      * Method untuk mengubah fokus ke field berikutnya
      * @param evt
      */
-    private void confirmPasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPasswordFieldActionPerformed
+    private void confirmPassTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPassTextFieldActionPerformed
         saveButton.doClick();
-    }//GEN-LAST:event_confirmPasswordFieldActionPerformed
+    }//GEN-LAST:event_confirmPassTextFieldActionPerformed
 
     /**
      * Method untuk kembali ke panel login dan menghapus data user yang sudah
@@ -219,15 +220,15 @@ public class SignUpPassPanel extends javax.swing.JPanel {
      * Method untuk membersihkan field
      */
     private void clearForm() {
-        passwordField.setText("");
-        confirmPasswordField.setText("");
+        passTextField.setText("");
+        confirmPassTextField.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLabel;
-    private javax.swing.JPasswordField confirmPasswordField;
-    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel confirmPassLabel;
+    private javax.swing.JPasswordField confirmPassTextField;
+    private javax.swing.JPasswordField passTextField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JLabel pasword2Label;
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel usernameLabel;
     private javax.swing.JTextField usernameTextField;

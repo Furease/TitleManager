@@ -40,7 +40,7 @@ public class LoginPanel extends javax.swing.JPanel {
         usernameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         userTextField = new javax.swing.JTextField();
-        PasswordField = new javax.swing.JPasswordField();
+        passTextField = new javax.swing.JPasswordField();
         loginButton = new javax.swing.JButton();
         signUpLabel = new javax.swing.JLabel();
 
@@ -49,7 +49,7 @@ public class LoginPanel extends javax.swing.JPanel {
         usernameLabel.setText("Username");
 
         passwordLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/titlemanager/icon/icons8_password_16px.png"))); // NOI18N
-        passwordLabel.setLabelFor(PasswordField);
+        passwordLabel.setLabelFor(passTextField);
         passwordLabel.setText("Password");
 
         userTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -58,9 +58,9 @@ public class LoginPanel extends javax.swing.JPanel {
             }
         });
 
-        PasswordField.addActionListener(new java.awt.event.ActionListener() {
+        passTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PasswordFieldActionPerformed(evt);
+                passTextFieldActionPerformed(evt);
             }
         });
 
@@ -95,12 +95,12 @@ public class LoginPanel extends javax.swing.JPanel {
                             .addComponent(passwordLabel))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {PasswordField, userTextField});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {passTextField, userTextField});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,7 +111,7 @@ public class LoginPanel extends javax.swing.JPanel {
                     .addComponent(usernameLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordLabel))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -127,7 +127,7 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         String username = userTextField.getText();
-        String password = new String(PasswordField.getPassword());
+        String password = new String(passTextField.getPassword());
 
         // Cek apakah username dan password kosong
         if (username.isEmpty() || password.isEmpty()) {
@@ -143,7 +143,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
             // Kosongkan field username dan password
             userTextField.setText("");
-            PasswordField.setText("");
+            passTextField.setText("");
 
             // Focus ke username field
             userTextField.requestFocus();
@@ -165,22 +165,22 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     private void userTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userTextFieldActionPerformed
         // Ketika enter di tekan, maka pindah ke field password
-        PasswordField.requestFocus();
+        passTextField.requestFocus();
     }//GEN-LAST:event_userTextFieldActionPerformed
 
     /**
      * Method untuk menekan login button ketika tombol enter di tekan.
      * @param evt
      */
-    private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
+    private void passTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passTextFieldActionPerformed
         // Ketika enter di tekan, maka klik tombol login
         loginButton.doClick();
-    }//GEN-LAST:event_PasswordFieldActionPerformed
+    }//GEN-LAST:event_passTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPasswordField PasswordField;
     private javax.swing.JButton loginButton;
+    private javax.swing.JPasswordField passTextField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JLabel signUpLabel;
     private javax.swing.JTextField userTextField;
